@@ -16,7 +16,7 @@ body {
 button{
     font-family: "frank-ruhl-libre-variable",sans-serif;
     font-variation-settings: 'wght' 600;
-    font-size: 40pt;
+    font-size: 50pt;
 }
 
 /* Main container with altar background */
@@ -58,7 +58,7 @@ h1 {
     font-style: normal;
     color: #FFF6D2;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-    font-size: 85pt;
+    font-size: 75pt;
     margin: 0;
 }
 
