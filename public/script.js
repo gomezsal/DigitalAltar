@@ -216,10 +216,8 @@ const renderItem = (item) => {
         ${imageHTML}
     
     <div class="item-heading">
-        <h3> ${item.name} </h3>
-        <div class="microchip-info">
-            <img src="./assets/chip.svg" /> ${item.microchip || '<i>???</i>'} 
-        </div>  
+        <h3> ${item.name} ${item.lastName}</h3>
+
     </div>
     <div class="item-info"> 
         <div class="item-icon" style="
@@ -230,32 +228,11 @@ const renderItem = (item) => {
             ${item.secondaryColor} 100%); 
         ">
         </div> 
-        <div class="stats">
-            <div class="stat">
-                <span>Playfulness</span>
-                <meter max="10" min="0" value="${item.playfulness || 0}"></meter> 
-            </div>
-            <div class="stat">
-                <span>Appetite</span>
-                <meter max="10" min="0" value="${item.appetite || 0}"></meter> 
-            </div>
-        </div> 
             
          ${calendarWidget(item.birthDate)}
+         ${calendarWidget(item.deathDate)}
     </div>
         
-    <div class="item-info">  
-        <section class="breed" style="${item.breed ? '' : 'display:none;'}">  
-            <img src="./assets/ribbon.svg" />  ${item.breed}
-        </section>
-        <section class="food" style="${item.food ? '' : 'display:none;'}">
-             <img src="./assets/${item.food}.svg" /> <span>${item.food} food</span>
-        </section> 
-        <section class="adoption">
-            <img src="./assets/${item.isAdopted ? 'adopted' : 'paw'}.svg" />
-            ${item.isAdopted ? 'Adopted' : 'Available'}
-        </section> 
-    </div>
 
     <section class="description" style="${item.description ? '' : 'display:none;'}">  
         <p>${item.description}</p>
