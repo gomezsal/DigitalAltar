@@ -3,6 +3,7 @@ let notReadyStatus = document.querySelector('#notReadyStatus')
 let myForm = document.querySelector('#myForm')
 let contentArea = document.querySelector('#contentArea')
 let formDialog = document.querySelector('#formDialog')
+let detailDialog = document.querySelector('#detailDialog')
 let createButton = document.querySelector('#createButton')
 let saveButton = document.querySelector('#saveButton')
 let cancelButton = document.querySelector('#cancelButton')
@@ -179,6 +180,44 @@ const deleteItem = async (id) => {
     }
 }
 
+// Show detail view for a filled frame
+const showDetail = (item) => {
+    const detailContent = document.querySelector('#detailContent')
+    
+    const birthDate = item.birthDate ? new Date(item.birthDate).toLocaleDateString('en-US', { 
+        month: '2-digit', 
+        day: '2-digit', 
+        year: 'numeric',
+        timeZone: 'UTC'
+    }) : '?'
+    
+    const deathDate = item.deathDate ? new Date(item.deathDate).toLocaleDateString('en-US', { 
+        month: '2-digit', 
+        day: '2-digit', 
+        year: 'numeric',
+        timeZone: 'UTC'
+    }) : '?'
+    
+    const template = /*html*/`
+        <button class="detail-close" id="detailCloseBtn">×</button>
+        <div class="detail-image-frame">
+            <img src="${item.imageUrl || 'assets/skull.svg'}" alt="${item.name}" />
+        </div>
+        <h2 class="detail-name">${item.name} ${item.lastName || ''}</h2>
+        <p class="detail-dates">${birthDate} - ${deathDate}</p>
+        <p class="detail-description">${item.description || ''}</p>
+    `
+    
+    detailContent.innerHTML = DOMPurify.sanitize(template)
+    
+    // Add close button event listener
+    document.querySelector('#detailCloseBtn').addEventListener('click', () => {
+        detailDialog.close()
+    })
+    
+    detailDialog.showModal()
+}
+
 // Render the altar with all frames
 const renderAltar = (items) => {
     const altarDiv = document.createElement('div')
@@ -198,17 +237,12 @@ const renderAltar = (items) => {
             img.alt = items[i].name ? `${items[i].name} ${items[i].lastName || ''}` : 'Memorial'
             frameSlot.appendChild(img)
             
-            // Add click handler to edit
-            frameSlot.addEventListener('click', () => editItem(items[i]))
+            // Add click handler to show detail view
+            frameSlot.addEventListener('click', () => showDetail(items[i]))
             
-            // Add hover tooltip with name and dates
+            // Add hover tooltip with name
             if (items[i].name) {
                 frameSlot.title = `${items[i].name} ${items[i].lastName || ''}`
-                if (items[i].birthDate || items[i].deathDate) {
-                    const birthYear = items[i].birthDate ? new Date(items[i].birthDate).getFullYear() : '?'
-                    const deathYear = items[i].deathDate ? new Date(items[i].deathDate).getFullYear() : '?'
-                    frameSlot.title += `\n${birthYear} - ${deathYear}`
-                }
             }
         } else {
             // Empty slot - show placeholder skull

@@ -12,43 +12,86 @@ body {
     align-items: center;
     background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #7b1fa2 100%);
     min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Main container with altar background */
+main {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 2rem;
+}
+
+/* Header overlay on top of altar */
+header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.header-decoration {
+    width: 100%;
+    max-width: 600px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 0.5rem;
 }
 
 h1 {
     font-family: "dry-cowboy", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color: #ffd54f;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    font-size: 3rem;
-    margin: 2rem 0 1rem 0;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    font-size: 3.5rem;
+    margin: 0;
 }
 
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
+#createButton {
+    position: relative;
+    z-index: 10;
+    margin: 1rem auto 2rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    border-radius: 2rem;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
 }
 
-.header-decoration {
-    width: 100%;
-    max-width: 800px;
-    height: 80px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    margin-bottom: 1rem;
+#createButton:hover {
+    background: linear-gradient(135deg, #ff5722 0%, #ff6b35 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
 }
 
 footer {
+    position: relative;
+    z-index: 10;
     text-align: center;
-    padding: 3rem;
-    color: white;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-top: auto;
 }
 
 footer a {
     color: #ffd54f;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
 
 button {
@@ -59,26 +102,25 @@ button {
     color: white;
     cursor: pointer;
     font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
 button.save,
-#createButton,
 #browseButton {
     background: rgb(3, 136, 3);
 }
 
 button.save:hover,
-#createButton:hover,
 #browseButton:hover {
     background-color: rgb(3, 103, 3);
 }
 
 button.cancel {
-    background: rgb(134, 134, 134);
+    background: rgb(183, 28, 28);
 }
 
 button.cancel:hover {
-    background: rgb(101, 101, 101);
+    background: rgb(153, 0, 0);
 }
 
 #removeImageButton {
@@ -90,12 +132,13 @@ button.cancel:hover {
 }
 
 #contentArea {
-    width: 90%;
-    max-width: 1200px;
-    margin: 2rem auto;
     position: relative;
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
+    z-index: 5;
 }
 
 /* Ofrenda Altar Styles */
@@ -115,8 +158,8 @@ button.cancel:hover {
     position: absolute;
     cursor: pointer;
     transition: transform 0.2s;
-    background: rgba(139, 69, 19, 0.8);
-    border: 4px solid #8b4513;
+    background: rgba(139, 69, 19, 0);
+    border: 4px solid transparent;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -127,6 +170,7 @@ button.cancel:hover {
 .frame-slot:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(255, 213, 79, 0.6);
+    z-index: 100;
 }
 
 .frame-slot img {
@@ -169,12 +213,13 @@ dialog {
     max-height: 90vh;
     padding: 0;
     border: none;
-    border-radius: 1rem;
-    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
 }
 
 .modal-container {
@@ -182,17 +227,20 @@ dialog::backdrop {
     flex-direction: column;
     height: 100%;
     max-height: 90vh;
+    background: #f5f1e8;
 }
 
 .modal-header {
     padding: 1.5rem 2rem;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
     flex-shrink: 0;
+    background: #f5f1e8;
 }
 
 .modal-header h2 {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    color: #333;
 }
 
 .modal-header p {
@@ -204,26 +252,17 @@ dialog::backdrop {
     padding: 1.5rem 2rem;
     overflow-y: auto;
     flex-grow: 1;
+    background: #f5f1e8;
 }
 
 .modal-footer {
     padding: 1rem 2rem;
-    border-top: 1px solid #ddd;
+    border-top: 2px solid #ddd;
     flex-shrink: 0;
     display: flex;
     gap: 1rem;
     justify-content: center;
-}
-
-#createButton {
-    margin: 2rem auto;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    background: #ff6b35;
-}
-
-#createButton:hover {
-    background: #ff5722;
+    background: #f5f1e8;
 }
 
 #status p {
@@ -255,6 +294,7 @@ legend {
     text-align: left;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    color: #333;
 }
 
 textarea {
@@ -263,11 +303,13 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 0.5rem;
     font-family: inherit;
+    resize: vertical;
 }
 
 label {
     font-weight: 600;
     margin-bottom: 0.25rem;
+    color: #333;
 }
 
 input,
@@ -276,6 +318,7 @@ option {
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
+    background: white;
 }
 
 input[type=date] {
@@ -314,7 +357,7 @@ textarea:user-invalid+.validation {
     padding: 20px;
     transition: all 0.3s ease;
     cursor: pointer;
-    background-color: #f9f9f9;
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -362,6 +405,88 @@ textarea:user-invalid+.validation {
     text-align: center;
 }
 
+/* Detail View Dialog */
+#detailDialog {
+    max-width: 500px;
+    width: 90%;
+    padding: 0;
+    border: none;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    background: #f5f1e8;
+}
+
+#detailDialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.detail-container {
+    position: relative;
+    padding: 2rem;
+    text-align: center;
+}
+
+.detail-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #c87800;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+}
+
+.detail-close:hover {
+    background: #a66000;
+}
+
+.detail-image-frame {
+    width: 200px;
+    height: 240px;
+    margin: 0 auto 1.5rem auto;
+    border: 8px solid #8b4513;
+    border-radius: 4px;
+    overflow: hidden;
+    background: white;
+}
+
+.detail-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.detail-name {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 1rem 0;
+}
+
+.detail-dates {
+    font-size: 1.25rem;
+    color: #666;
+    margin: 0 0 1.5rem 0;
+}
+
+.detail-description {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.6;
+    text-align: left;
+    margin: 0;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     .ofrenda-altar {
@@ -373,6 +498,11 @@ textarea:user-invalid+.validation {
     }
     
     .frame-slot {
-        border: 2px solid #8b4513;
+        border: 2px solid transparent;
+    }
+    
+    .header-decoration {
+        max-width: 400px;
+        height: 60px;
     }
 }

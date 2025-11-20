@@ -36,19 +36,31 @@
 </head>
 
 <body>
-  <header>
-    <div class="header-decoration" style="background-image: url('assets/decoration.svg');"></div>
-    <h1>Digital Ofrenda</h1>
-  </header>
-  
-  <section id="status">
-    <p id="readyStatus">✅ MongoDB is Ready</p>
-    <p id="notReadyStatus">❌ MongoDB is not connected. Please check your connection string in <code>.env</code> file.
-    </p>
-  </section>
-  
-  <button id="createButton">Dedicate an Ofrenda</button>
+  <main>
+    <!-- Header overlay on altar background -->
+    <header>
+      <div class="header-decoration" style="background-image: url('assets/decoration.svg');"></div>
+      <h1>Digital Ofrenda</h1>
+    </header>
+    
+    <section id="status">
+      <p id="readyStatus">✅ MongoDB is Ready</p>
+      <p id="notReadyStatus">❌ MongoDB is not connected. Please check your connection string in <code>.env</code> file.
+      </p>
+    </section>
+    
+    <button id="createButton">Dedicate an ofrenda</button>
 
+    <!-- Altar display area -->
+    <section id="contentArea"></section>
+
+    <footer>
+      Created by <a href="https://nsitu.ca">Harold Sikkema</a> in the context of
+      Systems Design in the Interaction Design program at Sheridan College.
+    </footer>
+  </main>
+
+  <!-- Form Dialog for Adding/Editing -->
   <dialog id="formDialog">
     <div class="modal-container">
       <div class="modal-header">
@@ -116,7 +128,7 @@
               type="text"
               name="name"
               id="name"
-              placeholder="e.g. Sofia"
+              placeholder="e.g. Lonja"
               autocomplete="off"
             />
             <small class="validation">Name is required</small>
@@ -129,7 +141,7 @@
               type="text"
               name="lastName"
               id="lastName"
-              placeholder="e.g. Martinez"
+              placeholder="e.g. Gómez"
               autocomplete="off"
             />
           </fieldset>
@@ -185,15 +197,12 @@
     </div>
   </dialog>
 
-  <main>
-    <section id="contentArea"></section>
-  </main>
-
-
-  <footer>
-    Created by <a href="https://nsitu.ca">Harold Sikkema</a> in the context of
-    Systems Design in the Interaction Design program at Sheridan College.
-  </footer>
+  <!-- Detail View Dialog -->
+  <dialog id="detailDialog">
+    <div class="detail-container" id="detailContent">
+      <!-- Content will be dynamically inserted here -->
+    </div>
+  </dialog>
 
   <script
     src="script.js"
