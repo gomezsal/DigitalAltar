@@ -43,8 +43,8 @@ header {
 
 .header-decoration {
     width: 100%;
-    max-width: 600px;
-    height: 100px;
+    max-width: 900px;
+    height: 200px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -55,9 +55,9 @@ h1 {
     font-family: "dry-cowboy", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color: #fff;
+    color: #FFF6D2;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-    font-size: 3.5rem;
+    font-size: 100pt;
     margin: 0;
 }
 
@@ -76,6 +76,10 @@ h1 {
     background: linear-gradient(135deg, #ff5722 0%, #ff6b35 100%);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+}
+
+.formHeading{
+    font-weight: 700;
 }
 
 footer {
@@ -205,7 +209,7 @@ button.cancel:hover {
 .frame-slot:nth-child(7) { left: 67.3%; top: 29.5%; width: 12.5%; height: 15%; }
 
 /* Third tier - 5 frames */
-.frame-slot:nth-child(8) { left: 16.1%; top: 52%; width: 12.8%; height: 16.8%; }
+.frame-slot:nth-child(8) { left: 16.02%; top: 52%; width: 12.8%; height: 16.8%; }
 .frame-slot:nth-child(9) { left: 28.6%; top: 52%; width: 12.8%; height: 16.8%; }
 .frame-slot:nth-child(10) { left: 44%; top: 52%; width: 12.8%; height: 16.8%; }
 .frame-slot:nth-child(11) { left: 59.4%; top: 52%; width: 12.8%; height: 16.8%; }
