@@ -238,10 +238,8 @@ const showDetail = (item) => {
 const renderAltar = (items) => {
     const altarDiv = document.createElement('div')
     altarDiv.classList.add('ofrenda-altar')
-    // Set the altar background image
-    altarDiv.style.backgroundImage = 'url(assets/altar.svg)'
 
-    // Create all 12 frame slots
+    // Create all 12 frame slots (these go BEHIND the altar)
     for (let i = 0; i < MAX_SLOTS; i++) {
         const frameSlot = document.createElement('div')
         frameSlot.classList.add('frame-slot')
@@ -279,6 +277,12 @@ const renderAltar = (items) => {
         
         altarDiv.appendChild(frameSlot)
     }
+
+    // Create the altar background overlay (this goes ON TOP of the frames)
+    const altarBackground = document.createElement('div')
+    altarBackground.classList.add('altar-background')
+    altarBackground.style.backgroundImage = 'url(assets/altar.svg)'
+    altarDiv.appendChild(altarBackground)
 
     return altarDiv
 }

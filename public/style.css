@@ -3,9 +3,8 @@ body {
     width: 100%;
     margin: 0;
     text-align: center;
-    font-family: "Jost", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
+    font-family: "libre-bodoni", sans-serif;
+    font-weight: 700;
     font-style: normal;
     display: flex;
     flex-direction: column;
@@ -13,6 +12,12 @@ body {
     background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #7b1fa2 100%);
     min-height: 100vh;
     overflow-x: hidden;
+}
+
+button{
+    font-family: "libre-bodoni", sans-serif;
+font-weight: 700;
+font-style: normal;
 }
 
 /* Main container with altar background */
@@ -146,11 +151,22 @@ button.cancel:hover {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
+    position: relative;
+    aspect-ratio: 1100 / 1100;
+}
+
+/* Altar background layer - behind frames */
+.altar-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    position: relative;
-    aspect-ratio: 1100 / 1100;
+    pointer-events: none;
+    z-index: 2;
 }
 
 /* Frame positions matching the wireframe */
@@ -158,13 +174,13 @@ button.cancel:hover {
     position: absolute;
     cursor: pointer;
     transition: transform 0.2s;
-    background: rgba(139, 69, 19, 0);
-    border: 4px solid transparent;
-    border-radius: 4px;
+    border: none;
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    z-index: 1;
 }
 
 .frame-slot:hover {
@@ -180,30 +196,31 @@ button.cancel:hover {
 }
 
 /* Top tier - 3 frames */
-.frame-slot:nth-child(1) { left: 27%; top: 4%; width: 12%; height: 17%; }
-.frame-slot:nth-child(2) { left: 43.5%; top: 4%; width: 12%; height: 17%; }
-.frame-slot:nth-child(3) { left: 60%; top: 4%; width: 12%; height: 17%; }
+.frame-slot:nth-child(1) { left: 27.8%; top: 5.5%; width: 10.5%; height: 15.5%; }
+.frame-slot:nth-child(2) { left: 44%; top: 5.5%; width: 10.5%; height: 15.5%; }
+.frame-slot:nth-child(3) { left: 60.2%; top: 5.5%; width: 10.5%; height: 15.5%; }
 
 /* Second tier - 4 frames */
-.frame-slot:nth-child(4) { left: 17%; top: 27%; width: 12%; height: 17%; }
-.frame-slot:nth-child(5) { left: 34%; top: 27%; width: 12%; height: 17%; }
-.frame-slot:nth-child(6) { left: 51%; top: 27%; width: 12%; height: 17%; }
-.frame-slot:nth-child(7) { left: 68%; top: 27%; width: 12%; height: 17%; }
+.frame-slot:nth-child(4) { left: 17.8%; top: 28%; width: 10.5%; height: 15.5%; }
+.frame-slot:nth-child(5) { left: 34.5%; top: 28%; width: 10.5%; height: 15.5%; }
+.frame-slot:nth-child(6) { left: 51.2%; top: 28%; width: 10.5%; height: 15.5%; }
+.frame-slot:nth-child(7) { left: 67.9%; top: 28%; width: 10.5%; height: 15.5%; }
 
 /* Third tier - 5 frames */
-.frame-slot:nth-child(8) { left: 7%; top: 51%; width: 12%; height: 17%; }
-.frame-slot:nth-child(9) { left: 22%; top: 51%; width: 12%; height: 17%; }
-.frame-slot:nth-child(10) { left: 37%; top: 51%; width: 12%; height: 17%; }
-.frame-slot:nth-child(11) { left: 52%; top: 51%; width: 12%; height: 17%; }
-.frame-slot:nth-child(12) { left: 67%; top: 51%; width: 12%; height: 17%; }
+.frame-slot:nth-child(8) { left: 8.2%; top: 52%; width: 10.5%; height: 15.5%; }
+.frame-slot:nth-child(9) { left: 22.5%; top: 52%; width: 10.5%; height: 15.5%; }
+.frame-slot:nth-child(10) { left: 36.8%; top: 52%; width: 10.5%; height: 15.5%; }
+.frame-slot:nth-child(11) { left: 51.1%; top: 52%; width: 10.5%; height: 15.5%; }
+.frame-slot:nth-child(12) { left: 65.4%; top: 52%; width: 10.5%; height: 15.5%; }
 
 /* Empty state for frames */
 .frame-slot.empty::after {
     content: '+';
     position: absolute;
-    font-size: 3rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.6);
     font-weight: 300;
+    z-index: 3;
 }
 
 /* Dialog styling */
