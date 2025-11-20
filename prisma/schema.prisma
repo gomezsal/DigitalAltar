@@ -12,7 +12,7 @@ model cats {
   adoptionDate   DateTime? @db.Date
   birthDate      DateTime? @db.Date
   deathDate      DateTime? @db.Date
-  description    String?+
+  description    String?
   lastName       String?
   name           String?
   imageUrl       String?
