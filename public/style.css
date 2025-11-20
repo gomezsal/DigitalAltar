@@ -197,14 +197,14 @@ button.cancel:hover {
 
 /* Top tier - 3 frames */
 .frame-slot:nth-child(1) { left: 27.8%; top: 5.5%; width: 12.5%; height: 16%; }
-.frame-slot:nth-child(2) { left: 44%; top: 5.5%; width: 12.5%; height: 16%; }
-.frame-slot:nth-child(3) { left: 59.5%; top: 5.5%; width: 12.5%; height: 16%; }
+.frame-slot:nth-child(2) { left: 43.9%; top: 5.5%; width: 12.5%; height: 16%; }
+.frame-slot:nth-child(3) { left: 59.4%; top: 5.5%; width: 12.5%; height: 16%; }
 
 /* Second tier - 4 frames */
-.frame-slot:nth-child(4) { left: 20%; top: 29.5%; width: 12.5%; height: 16%; }
-.frame-slot:nth-child(5) { left: 35.5%; top: 29.5%; width: 12.5%; height: 16%; }
-.frame-slot:nth-child(6) { left: 51.4%; top: 29.5%; width: 12.5%; height: 16%; }
-.frame-slot:nth-child(7) { left: 67.3%; top: 29.5%; width: 12.5%; height: 16%; }
+.frame-slot:nth-child(4) { left: 20%; top: 29.5%; width: 12.5%; height: 15.8%; }
+.frame-slot:nth-child(5) { left: 35.7%; top: 29.5%; width: 12.5%; height: 15.8%; }
+.frame-slot:nth-child(6) { left: 51.5%; top: 29.5%; width: 12.5%; height: 15.8%; }
+.frame-slot:nth-child(7) { left: 67.3%; top: 29.5%; width: 12.5%; height: 15.8%; }
 
 /* Third tier - 5 frames */
 .frame-slot:nth-child(8) { left: 8.2%; top: 52%; width: 12.5%; height: 16%; }
