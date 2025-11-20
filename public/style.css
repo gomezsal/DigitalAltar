@@ -3,9 +3,8 @@ body {
     width: 100%;
     margin: 0;
     text-align: center;
-    font-family: "libre-bodoni", sans-serif;
-    font-weight: 700;
-    font-style: normal;
+        font-family: "frank-ruhl-libre-variable",sans-serif;
+        font-variation-settings: 'wght' 400;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,9 +14,8 @@ body {
 }
 
 button{
-    font-family: "libre-bodoni", sans-serif;
-font-weight: 700;
-font-style: normal;
+    font-family: "frank-ruhl-libre-variable",sans-serif;
+    font-variation-settings: 'wght' 600;
 }
 
 /* Main container with altar background */
