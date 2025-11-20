@@ -206,6 +206,10 @@ const showDetail = (item) => {
         <h2 class="detail-name">${item.name} ${item.lastName || ''}</h2>
         <p class="detail-dates">${birthDate} - ${deathDate}</p>
         <p class="detail-description">${item.description || ''}</p>
+        <div class="detail-actions">
+            <button class="detail-edit-btn" id="detailEditBtn">Edit</button>
+            <button class="detail-delete-btn" id="detailDeleteBtn">Delete</button>
+        </div>
     `
     
     detailContent.innerHTML = DOMPurify.sanitize(template)
@@ -213,6 +217,18 @@ const showDetail = (item) => {
     // Add close button event listener
     document.querySelector('#detailCloseBtn').addEventListener('click', () => {
         detailDialog.close()
+    })
+    
+    // Add edit button event listener
+    document.querySelector('#detailEditBtn').addEventListener('click', () => {
+        detailDialog.close()
+        editItem(item)
+    })
+    
+    // Add delete button event listener
+    document.querySelector('#detailDeleteBtn').addEventListener('click', () => {
+        detailDialog.close()
+        deleteItem(item.id)
     })
     
     detailDialog.showModal()

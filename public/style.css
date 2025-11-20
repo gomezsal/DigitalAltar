@@ -484,7 +484,34 @@ textarea:user-invalid+.validation {
     color: #444;
     line-height: 1.6;
     text-align: left;
-    margin: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.detail-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.detail-edit-btn {
+    background: #4a7c59;
+    padding: 0.75rem 2rem;
+    border-radius: 2rem;
+}
+
+.detail-edit-btn:hover {
+    background: #3d6849;
+}
+
+.detail-delete-btn {
+    background: #8b4049;
+    padding: 0.75rem 2rem;
+    border-radius: 2rem;
+}
+
+.detail-delete-btn:hover {
+    background: #6d2f36;
 }
 
 /* Responsive design */
