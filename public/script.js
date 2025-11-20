@@ -8,6 +8,8 @@ let saveButton = document.querySelector('#saveButton')
 let cancelButton = document.querySelector('#cancelButton')
 let formHeading = document.querySelector('.modal-header h2')
 
+const MAX_SLOTS = 12 // Total number of frame slots on the altar
+
 // Get form data and process each type of input
 // Prepare the data as JSON with a proper set of types
 // e.g. Booleans, Numbers, Dates
@@ -38,8 +40,7 @@ const getFormData = () => {
     return json
 }
 
-
-// listen for form submissions  
+// Listen for form submissions  
 myForm.addEventListener('submit', async event => {
     // prevent the page from reloading when the form is submitted.
     event.preventDefault()
@@ -52,6 +53,7 @@ myForm.addEventListener('submit', async event => {
 // Open dialog when create button clicked
 createButton.addEventListener('click', () => {
     myForm.reset()
+    formHeading.textContent = 'Add someone to the ofrenda'
     formDialog.showModal()
 })
 
@@ -64,7 +66,6 @@ cancelButton.addEventListener('click', () => {
 saveButton.addEventListener('click', () => {
     myForm.requestSubmit()
 })
-
 
 // Save item (Create or Update)
 const saveItem = async (data) => {
@@ -102,7 +103,6 @@ const saveItem = async (data) => {
         const result = await response.json()
         console.log('Saved:', result)
 
-
         // Refresh the data list
         getData()
     }
@@ -111,7 +111,6 @@ const saveItem = async (data) => {
         alert('An error occurred while saving')
     }
 }
-
 
 // Edit item - populate form with existing data
 const editItem = (data) => {
@@ -146,7 +145,7 @@ const editItem = (data) => {
     }
 
     // Update the heading to indicate edit mode
-    formHeading.textContent = '🐈 Edit Cat'
+    formHeading.textContent = 'Edit Ofrenda Entry'
 
     // Show the dialog
     formDialog.showModal()
@@ -154,7 +153,7 @@ const editItem = (data) => {
 
 // Delete item
 const deleteItem = async (id) => {
-    if (!confirm('Are you sure you want to delete this cat?')) {
+    if (!confirm('Are you sure you want to remove this person from the ofrenda?')) {
         return
     }
 
@@ -180,81 +179,61 @@ const deleteItem = async (id) => {
     }
 }
 
+// Render the altar with all frames
+const renderAltar = (items) => {
+    const altarDiv = document.createElement('div')
+    altarDiv.classList.add('ofrenda-altar')
+    // Set the altar background image
+    altarDiv.style.backgroundImage = 'url(assets/altar.svg)'
 
-const calendarWidget = (date) => {
-    if (!date) return ''
-    const month = new Date(date).toLocaleString("en-CA", { month: 'short', timeZone: "UTC" })
-    const day = new Date(date).toLocaleString("en-CA", { day: '2-digit', timeZone: "UTC" })
-    const year = new Date(date).toLocaleString("en-CA", { year: 'numeric', timeZone: "UTC" })
-    return ` <div class="calendar">
-                <div class="born"><img src="./assets/birthday.svg" /></div>
-                <div class="month">${month}</div>
-                <div class="day">${day}</div> 
-                <div class="year">${year}</div>
-            </div>`
-
-}
-
-// Render a single item
-const renderItem = (item) => {
-    const div = document.createElement('div')
-    div.classList.add('item-card')
-    div.setAttribute('data-id', item.id)
-
-    // Add image display if available
-    const imageHTML = item.imageUrl ?
-        `<div class="item-image-area" style="background: url(${item.imageUrl});">
-            <div class="item-image-container">
-                <img src="${item.imageUrl}" alt="${item.name}" class="item-image" />
-            </div>
-        </div>`
-        :
-        ''
-
-    const template = /*html*/`
-    
-        ${imageHTML}
-    
-    <div class="item-heading">
-        <h3> ${item.name} ${item.lastName}</h3>
-
-    </div>
-    <div class="item-info"> 
-        <div class="item-icon" style="
-            background: linear-gradient(135deg, 
-            ${item.primaryColor} 0%, 
-            ${item.primaryColor} 40%, 
-            ${item.secondaryColor} 60%, 
-            ${item.secondaryColor} 100%); 
-        ">
-        </div> 
+    // Create all 12 frame slots
+    for (let i = 0; i < MAX_SLOTS; i++) {
+        const frameSlot = document.createElement('div')
+        frameSlot.classList.add('frame-slot')
+        
+        if (items[i]) {
+            // Slot has data - show the image or placeholder
+            const img = document.createElement('img')
+            img.src = items[i].imageUrl || 'assets/skull.svg'
+            img.alt = items[i].name ? `${items[i].name} ${items[i].lastName || ''}` : 'Memorial'
+            frameSlot.appendChild(img)
             
-         ${calendarWidget(item.birthDate)}
-         ${calendarWidget(item.deathDate)}
-    </div>
+            // Add click handler to edit
+            frameSlot.addEventListener('click', () => editItem(items[i]))
+            
+            // Add hover tooltip with name and dates
+            if (items[i].name) {
+                frameSlot.title = `${items[i].name} ${items[i].lastName || ''}`
+                if (items[i].birthDate || items[i].deathDate) {
+                    const birthYear = items[i].birthDate ? new Date(items[i].birthDate).getFullYear() : '?'
+                    const deathYear = items[i].deathDate ? new Date(items[i].deathDate).getFullYear() : '?'
+                    frameSlot.title += `\n${birthYear} - ${deathYear}`
+                }
+            }
+        } else {
+            // Empty slot - show placeholder skull
+            const img = document.createElement('img')
+            img.src = 'assets/skull.svg'
+            img.alt = 'Empty frame'
+            img.style.opacity = '0.3'
+            frameSlot.appendChild(img)
+            frameSlot.classList.add('empty')
+            
+            // Add click handler to create new entry
+            frameSlot.addEventListener('click', () => {
+                myForm.reset()
+                formHeading.textContent = 'Add someone to the ofrenda'
+                formDialog.showModal()
+            })
+        }
         
+        altarDiv.appendChild(frameSlot)
+    }
 
-    <section class="description" style="${item.description ? '' : 'display:none;'}">  
-        <p>${item.description}</p>
-    </section>
-
-        
-           
-        <div class="item-actions">
-            <button class="edit-btn">Edit</button>
-            <button class="delete-btn">Delete</button>
-        </div>
-    `
-    div.innerHTML = DOMPurify.sanitize(template);
-
-    // Add event listeners to buttons
-    div.querySelector('.edit-btn').addEventListener('click', () => editItem(item))
-    div.querySelector('.delete-btn').addEventListener('click', () => deleteItem(item.id))
-
-    return div
+    return altarDiv
 }
 
-// fetch items from API endpoint and populate the content div
+// Fetch items from API endpoint and populate the altar
 const getData = async () => {
     try {
         const response = await fetch('/data')
@@ -266,17 +245,10 @@ const getData = async () => {
             const data = await response.json()
             console.log('Fetched data:', data)
 
-            if (data.length == 0) {
-                contentArea.innerHTML = '<p><i>No data found in the database.</i></p>'
-                return
-            }
-            else {
-                contentArea.innerHTML = ''
-                data.forEach(item => {
-                    const itemDiv = renderItem(item)
-                    contentArea.appendChild(itemDiv)
-                })
-            }
+            // Clear and render the altar
+            contentArea.innerHTML = ''
+            const altar = renderAltar(data)
+            contentArea.appendChild(altar)
         }
         else {
             // If the request failed, show the "not ready" status
@@ -294,7 +266,7 @@ const getData = async () => {
 
 // Revert to the default form title on reset
 myForm.addEventListener('reset', () => {
-    formHeading.textContent = 'Share the story of a Loved one'
+    formHeading.textContent = 'Add someone to the ofrenda'
     // Reset image preview
     const imagePreview = document.querySelector('#imagePreview')
     if (imagePreview) {

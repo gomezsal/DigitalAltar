@@ -8,7 +8,7 @@
     content="width=device-width initial-scale=1"
   />
 
-  <title>Managing Data</title>
+  <title>Digital Ofrenda</title>
 
   <link
     rel="preconnect"
@@ -37,19 +37,22 @@
 
 <body>
   <header>
+    <div class="header-decoration" style="background-image: url('assets/decoration.svg');"></div>
     <h1>Digital Ofrenda</h1>
   </header>
+  
   <section id="status">
     <p id="readyStatus">✅ MongoDB is Ready</p>
     <p id="notReadyStatus">❌ MongoDB is not connected. Please check your connection string in <code>.env</code> file.
     </p>
   </section>
+  
   <button id="createButton">Dedicate an Ofrenda</button>
 
   <dialog id="formDialog">
     <div class="modal-container">
       <div class="modal-header">
-        <h2>Add your loved one to the Ofrenda</h2>
+        <h2>Add someone to the ofrenda</h2>
         <p>Share the story of your loved one</p>
       </div>
 
@@ -74,7 +77,7 @@
 
           <!-- Image upload section -->
           <fieldset class="upload-fieldset">
-            <legend>Photo</legend>
+            <legend>Deceased Photo</legend>
             <div id="uploadArea">
               <img
                 id="imagePreview"
@@ -107,7 +110,7 @@
           </fieldset>
 
           <fieldset>
-            <label for="name"> Name</label>
+            <label for="name">Name</label>
             <input
               required
               type="text"
@@ -120,16 +123,15 @@
           </fieldset>
 
           <fieldset>
-            <label for="lastName"> Last Name</label>
+            <label for="lastName">Last Name</label>
             <input
               required
               type="text"
               name="lastName"
               id="lastName"
-              placeholder="e.g. Sofia"
+              placeholder="e.g. Martinez"
               autocomplete="off"
             />
-
           </fieldset>
 
           <fieldset>
@@ -154,7 +156,7 @@
             <label for="description">Description</label>
             <small>Provide a brief biography.</small>
             <textarea
-              placeholder="Biography"
+              placeholder="Share memories and stories about your loved one..."
               required
               minlength="20"
               name="description"
@@ -184,7 +186,6 @@
   </dialog>
 
   <main>
-    <h2>🐈 Noteworthy Cats</h2>
     <section id="contentArea"></section>
   </main>
 
