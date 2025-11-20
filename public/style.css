@@ -19,6 +19,7 @@ h2 img {
     width: 2rem;
 }
 
+
 nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -51,14 +52,15 @@ footer {
     padding: 3rem;
 }
 
-
+h1 {
+    font-family: "dry-cowboy", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
 
 header p,
 header ul {
     margin: 1rem;
-font-family: "dry-cowboy", sans-serif;
-font-weight: 400;
-font-style: normal;
 }
 
 #intro {
