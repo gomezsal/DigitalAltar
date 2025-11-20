@@ -3,106 +3,204 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta
+    name="viewport"
+    content="width=device-width initial-scale=1"
+  />
 
-  <title>Digital Ofrenda</title>
+  <title>Managing Data</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap" rel="stylesheet">
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap"
+    rel="stylesheet"
+  >
   <link rel="stylesheet" href="https://use.typekit.net/qvx3vuo.css">
-  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
 
+  <!--  DOMPurify cleans up HTML to prevent XSS attacks
+  https://www.jsdelivr.com/package/npm/dompurify  -->
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.3.0/dist/purify.min.js"></script>
+
 </head>
 
 <body>
   <header>
-    <div class="header-decoration" style="background-image: url('assets/decoration.svg');"></div>
     <h1>Digital Ofrenda</h1>
   </header>
-
   <section id="status">
     <p id="readyStatus">✅ MongoDB is Ready</p>
-    <p id="notReadyStatus">❌ MongoDB is not connected. Please check your connection string in <code>.env</code> file.</p>
+    <p id="notReadyStatus">❌ MongoDB is not connected. Please check your connection string in <code>.env</code> file.
+    </p>
   </section>
-
   <button id="createButton">Dedicate an Ofrenda</button>
 
   <dialog id="formDialog">
     <div class="modal-container">
       <div class="modal-header">
-        <h2>Add someone to the ofrenda</h2>
+        <h2>Add your loved one to the Ofrenda</h2>
         <p>Share the story of your loved one</p>
       </div>
 
       <div class="modal-body">
-        <form id="myForm" method="dialog">
-          <input type="hidden" name="id" id="id" />
-          <input type="hidden" name="imageUrl" id="imageUrl" />
+        <form
+          id="myForm"
+          method="dialog"
+        >
+          <!-- Hidden field to store ID for updates -->
+          <input
+            type="hidden"
+            name="id"
+            id="id"
+          />
 
+          <!-- Hidden field to store image data -->
+          <input
+            type="hidden"
+            name="imageUrl"
+            id="imageUrl"
+          />
+
+          <!-- Image upload section -->
           <fieldset class="upload-fieldset">
-            <legend>Deceased Photo</legend>
+            <legend>Photo</legend>
             <div id="uploadArea">
-              <img id="imagePreview" src="assets/photo.svg" alt="Image preview" />
+              <img
+                id="imagePreview"
+                src="assets/photo.svg"
+                alt="Image preview"
+              />
               <div class="upload-controls">
-                <input type="file" id="fileInput" accept="image/*" style="display:none" />
-                <button type="button" id="browseButton">Browse</button>
-                <button type="button" id="removeImageButton" style="display:none;">Remove</button>
+                <input
+                  type="file"
+                  id="fileInput"
+                  accept="image/*"
+                  style="display:none"
+                />
+                <button
+                  type="button"
+                  id="browseButton"
+                >Browse</button>
+                <button
+                  type="button"
+                  id="removeImageButton"
+                  style="display:none;"
+                >Remove</button>
                 <p id="uploadInstructions">or drag and drop an image here</p>
               </div>
             </div>
-            <div id="noticeArea" style="display:none"></div>
+            <div
+              id="noticeArea"
+              style="display:none"
+            ></div>
           </fieldset>
 
           <fieldset>
-            <label for="name">Name</label>
-            <input required type="text" name="name" id="name" placeholder="e.g. Sofia" autocomplete="off" />
+            <label for="name"> Name</label>
+            <input
+              required
+              type="text"
+              name="name"
+              id="name"
+              placeholder="e.g. Sofia"
+              autocomplete="off"
+            />
             <small class="validation">Name is required</small>
           </fieldset>
 
           <fieldset>
-            <label for="lastName">Last Name</label>
-            <input required type="text" name="lastName" id="lastName" placeholder="e.g. Martinez" autocomplete="off" />
+            <label for="lastName"> Last Name</label>
+            <input
+              required
+              type="text"
+              name="lastName"
+              id="lastName"
+              placeholder="e.g. Sofia"
+              autocomplete="off"
+            />
+
           </fieldset>
 
           <fieldset>
             <label for="birthDate">Birth Date</label>
-            <input type="date" name="birthDate" id="birthDate" />
+            <input
+              type="date"
+              name="birthDate"
+              id="birthDate"
+            />
           </fieldset>
 
           <fieldset>
             <label for="deathDate">Death Date</label>
-            <input type="date" name="deathDate" id="deathDate" />
+            <input
+              type="date"
+              name="deathDate"
+              id="deathDate"
+            />
           </fieldset>
 
           <fieldset>
             <label for="description">Description</label>
             <small>Provide a brief biography.</small>
-            <textarea placeholder="Share memories and stories about your loved one..." required minlength="20" name="description" id="description" rows="6" cols="30"></textarea>
+            <textarea
+              placeholder="Biography"
+              required
+              minlength="20"
+              name="description"
+              id="description"
+              rows="6"
+              cols="30"
+            ></textarea>
             <small class="validation">Bio must be at least 20 characters.</small>
           </fieldset>
+    
         </form>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="save" id="saveButton">Save</button>
-        <button type="button" class="cancel" id="cancelButton">Cancel</button>
+        <button
+          type="button"
+          class="save"
+          id="saveButton"
+        >Save</button>
+        <button
+          type="button"
+          class="cancel"
+          id="cancelButton"
+        >Cancel</button>
       </div>
     </div>
   </dialog>
 
   <main>
+    <h2>🐈 Noteworthy Cats</h2>
     <section id="contentArea"></section>
   </main>
+
 
   <footer>
     Created by <a href="https://nsitu.ca">Harold Sikkema</a> in the context of
     Systems Design in the Interaction Design program at Sheridan College.
   </footer>
 
-  <script src="script.js" type="module"></script>
+  <script
+    src="script.js"
+    type="module"
+  ></script>
+
   <script src="upload.js"></script>
+
 </body>
 
 </html>
