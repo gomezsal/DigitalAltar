@@ -294,7 +294,7 @@ const getData = async () => {
 
 // Revert to the default form title on reset
 myForm.addEventListener('reset', () => {
-    formHeading.textContent = '🐈 Share a Cat'
+    formHeading.textContent = 'Share the story of a Loved one'
     // Reset image preview
     const imagePreview = document.querySelector('#imagePreview')
     if (imagePreview) {
