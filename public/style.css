@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #7b1fa2 100%);
+    background: linear-gradient(135deg, #40004E 0%, #370144 50%, #31013c 100%);
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -207,7 +207,7 @@ button.cancel:hover {
 .frame-slot:nth-child(7) { left: 67.3%; top: 29.5%; width: 12.5%; height: 15%; }
 
 /* Third tier - 5 frames */
-.frame-slot:nth-child(8) { left: 16.2%; top: 52%; width: 12.8%; height: 16.8%; }
+.frame-slot:nth-child(8) { left: 16.1%; top: 52%; width: 12.8%; height: 16.8%; }
 .frame-slot:nth-child(9) { left: 28.6%; top: 52%; width: 12.8%; height: 16.8%; }
 .frame-slot:nth-child(10) { left: 44%; top: 52%; width: 12.8%; height: 16.8%; }
 .frame-slot:nth-child(11) { left: 59.4%; top: 52%; width: 12.8%; height: 16.8%; }
