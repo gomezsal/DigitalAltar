@@ -504,7 +504,7 @@ textarea:user-invalid+.validation {
     font-size: 1rem;
     color: #444;
     line-height: 1.6;
-    text-align: left;
+    text-align: center;
     margin: 0 0 1.5rem 0;
 }
 
